@@ -46,8 +46,13 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-app.UseSwagger();
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    dbContext.Database.Migrate();
+}
 
+app.UseSwagger();
 app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
