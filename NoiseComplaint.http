@@ -1,0 +1,6 @@
+@NoiseComplaint_HostAddress = http://localhost:5129
+
+GET {{NoiseComplaint_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
